@@ -14,10 +14,9 @@
       overflow: hidden;
     }
 
-    /* Floating food images */
     .food-img {
       position: fixed; width: 110px; border-radius: 18px;
-      opacity: 0.18; pointer-events: none;
+      opacity: 0.15; pointer-events: none;
       animation: floatAnim 7s ease-in-out infinite;
     }
     .food-img:nth-child(1){ top:8%;  left:6%;  animation-delay:0s; }
@@ -29,7 +28,6 @@
       50%{ transform: translateY(-28px) rotate(2deg); }
     }
 
-    /* Login box */
     .login-box {
       position: relative; z-index: 10;
       width: 100%; max-width: 420px;
@@ -41,7 +39,6 @@
       margin: 16px;
     }
 
-    /* Logo */
     .logo-area { text-align: center; margin-bottom: 30px; }
     .logo-brand {
       font-size: 30px; font-weight: 800;
@@ -59,33 +56,6 @@
       margin: 0 0 28px;
     }
 
-    /* Role selector */
-    .role-selector {
-      display: flex; gap: 10px; margin-bottom: 22px;
-    }
-    .role-btn {
-      flex: 1; padding: 12px 8px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 10px; cursor: pointer;
-      color: rgba(245,240,232,0.45);
-      font-size: 13px; font-weight: 600;
-      text-align: center; transition: all 0.2s;
-      letter-spacing: 0.5px;
-    }
-    .role-btn .role-icon { font-size: 20px; display: block; margin-bottom: 4px; }
-    .role-btn:hover {
-      border-color: rgba(201,168,76,0.4);
-      color: rgba(245,240,232,0.7);
-    }
-    .role-btn.active {
-      background: rgba(201,168,76,0.12);
-      border-color: rgba(201,168,76,0.6);
-      color: #c9a84c;
-      box-shadow: 0 0 12px rgba(201,168,76,0.1);
-    }
-
-    /* Fields */
     .field { margin-bottom: 16px; }
     .field label {
       display: block; font-size: 10px;
@@ -114,7 +84,6 @@
     }
     .pw-eye:hover { color: #c9a84c; }
 
-    /* Login button */
     .login-btn {
       width: 100%; padding: 14px;
       background: linear-gradient(135deg, #c9a84c 0%, #e8c96e 50%, #c9a84c 100%);
@@ -124,35 +93,32 @@
       margin-top: 10px; transition: opacity 0.2s, transform 0.1s;
     }
     .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .login-btn:active { transform: translateY(0); }
     .login-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
-    /* Error */
     .error-msg {
       font-size: 12px; color: #e74c3c;
       text-align: center; margin-top: 14px;
       min-height: 18px; letter-spacing: 0.3px;
     }
 
-    /* Success */
+    /* Success overlay */
     .success-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,0.92);
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.93);
       align-items: center; justify-content: center;
-      flex-direction: column; gap: 16px;
+      flex-direction: column; gap: 14px;
     }
     .success-overlay.show { display: flex; }
-    .success-icon { font-size: 56px; animation: popIn 0.4s ease; }
-    .success-text { font-size: 18px; color: #c9a84c; font-weight: 700; letter-spacing: 2px; }
-    .success-sub { font-size: 13px; color: rgba(245,240,232,0.4); }
+    .success-icon { font-size: 60px; animation: popIn 0.4s ease; }
+    .success-name { font-size: 20px; color: #c9a84c; font-weight: 800; letter-spacing: 2px; }
+    .success-role { font-size: 13px; color: rgba(245,240,232,0.5); letter-spacing: 1px; }
+    .success-rest { font-size: 11px; color: rgba(201,168,76,0.4); margin-top: 4px; }
     @keyframes popIn {
       0%{ transform: scale(0.5); opacity: 0; }
       70%{ transform: scale(1.15); }
       100%{ transform: scale(1); opacity: 1; }
     }
 
-    /* Shake animation */
     @keyframes shake {
       0%,100%{ transform: translateX(0); }
       20%{ transform: translateX(-8px); }
@@ -171,45 +137,30 @@
 </head>
 <body>
 
-<!-- Floating food images -->
 <img class="food-img" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=120" alt="">
 <img class="food-img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=120" alt="">
 <img class="food-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=120" alt="">
 <img class="food-img" src="https://images.unsplash.com/photo-1543353071-087092ec393a?w=120" alt="">
 
-<!-- Login Box -->
 <div class="login-box" id="loginBox">
-
   <div class="logo-area">
     <div class="logo-brand">🌿 Siplora</div>
     <div class="logo-tag">Staff Login Portal</div>
   </div>
   <div class="divider"></div>
 
-  <!-- Role Select -->
-  <div class="role-selector">
-    <div class="role-btn active" id="roleChef" onclick="selectRole('chef')">
-      <span class="role-icon">👨‍🍳</span>
-      Chef
-    </div>
-    <div class="role-btn" id="roleCaptain" onclick="selectRole('captain')">
-      <span class="role-icon">🧑‍✈️</span>
-      Captain
-    </div>
-  </div>
-
-  <!-- Email -->
   <div class="field">
-    <label id="emailLabel">Email Address</label>
-    <input type="email" id="emailInput" placeholder="chef@restaurant.com" autocomplete="username"
+    <label>Email Address</label>
+    <input type="email" id="emailInput" placeholder="chef@restaurant.com"
+      autocomplete="username"
       onkeydown="if(event.key==='Enter') document.getElementById('passInput').focus()">
   </div>
 
-  <!-- Password -->
   <div class="field">
     <label>Password</label>
     <div class="pw-wrap">
-      <input type="password" id="passInput" placeholder="••••••••" autocomplete="current-password"
+      <input type="password" id="passInput" placeholder="••••••••"
+        autocomplete="current-password"
         onkeydown="if(event.key==='Enter') doLogin()">
       <button class="pw-eye" onclick="togglePw()" type="button">👁</button>
     </div>
@@ -217,18 +168,17 @@
 
   <button class="login-btn" id="loginBtn" onclick="doLogin()">LOGIN →</button>
   <div class="error-msg" id="errMsg"></div>
-
   <div class="footer">Powered by Siplora &middot; Secure Staff Login</div>
 </div>
 
-<!-- Success overlay -->
+<!-- Success Screen -->
 <div class="success-overlay" id="successOverlay">
-  <div class="success-icon" id="successIcon">✅</div>
-  <div class="success-text" id="successText">Welcome!</div>
-  <div class="success-sub" id="successSub">Redirecting...</div>
+  <div class="success-icon" id="sIcon">✅</div>
+  <div class="success-name" id="sName">Welcome!</div>
+  <div class="success-role" id="sRole">Redirecting...</div>
+  <div class="success-rest" id="sRest"></div>
 </div>
 
-<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -247,22 +197,8 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const db   = firebase.firestore();
 
-// Purana session clear karo
+// Purana session clear
 auth.signOut().catch(function(){});
-
-// ── State ──────────────────────────────────────────────────────
-var selectedRole = 'chef'; // 'chef' | 'captain'
-
-function selectRole(role) {
-  selectedRole = role;
-  document.getElementById('roleChef').classList.toggle('active', role === 'chef');
-  document.getElementById('roleCaptain').classList.toggle('active', role === 'captain');
-  document.getElementById('emailLabel').textContent = role === 'chef' ? 'Email Address' : 'Email Address';
-  document.getElementById('emailInput').placeholder = role === 'chef'
-    ? 'chef@restaurant.com'
-    : 'captain@restaurant.com';
-  document.getElementById('errMsg').textContent = '';
-}
 
 function togglePw() {
   var inp = document.getElementById('passInput');
@@ -271,20 +207,20 @@ function togglePw() {
 
 function showErr(msg) {
   document.getElementById('errMsg').textContent = msg;
-  var box = document.getElementById('loginBox');
-  box.classList.remove('shake');
-  void box.offsetWidth; // reflow
-  box.classList.add('shake');
-  setTimeout(function(){ box.classList.remove('shake'); }, 420);
   var btn = document.getElementById('loginBtn');
   btn.disabled = false;
   btn.textContent = 'LOGIN →';
+  var box = document.getElementById('loginBox');
+  box.classList.remove('shake');
+  void box.offsetWidth;
+  box.classList.add('shake');
+  setTimeout(function(){ box.classList.remove('shake'); }, 420);
 }
 
-// ── MAIN LOGIN FUNCTION ────────────────────────────────────────
+// ── MAIN LOGIN ─────────────────────────────────────────────────
 async function doLogin() {
-  var email    = document.getElementById('emailInput').value.trim();
-  var password = document.getElementById('passInput').value.trim();
+  var email    = (document.getElementById('emailInput').value || '').trim();
+  var password = (document.getElementById('passInput').value  || '').trim();
   var btn      = document.getElementById('loginBtn');
 
   document.getElementById('errMsg').textContent = '';
@@ -296,98 +232,103 @@ async function doLogin() {
   btn.textContent = 'Checking...';
 
   try {
-    // ── Step 1: Firebase Auth se login ──────────────────────
+
+    // ── STEP 1: Firebase Auth login ────────────────────────
     var userCred = await auth.signInWithEmailAndPassword(email, password);
-    var uid = userCred.user.uid;
+    var uid      = userCred.user.uid;
+    console.log('[Login] Firebase Auth OK — UID:', uid);
 
-    // ── Step 2: Firestore mein users/{uid} check karo ───────
-    // chef-captain-auth-fix.js ne yahan role + restaurantId save kiya tha
-    var userDoc = await db.collection('users').doc(uid).get();
-
+    // ── STEP 2: Firestore users/{uid} se role + restaurantId lo ──
     var role         = null;
     var restaurantId = null;
     var name         = '';
 
-    if (userDoc.exists) {
-      var data = userDoc.data();
-      role         = data.role         || null;
-      restaurantId = data.restaurantId || null;
-      name         = data.name         || '';
+    var userSnap = await db.collection('users').doc(uid).get();
+    if (userSnap.exists) {
+      var ud   = userSnap.data();
+      role         = ud.role         || null;
+      restaurantId = ud.restaurantId || null;
+      name         = ud.name         || '';
+      console.log('[Login] users/ mein mila — role:', role, '| rid:', restaurantId);
     }
 
-    // ── Step 3: Agar users/ mein nahi mila — cc_chefs/captains se dhundo ──
+    // ── STEP 3: users/ mein nahi mila — cc_chefs se dhundo ──
     if (!role || !restaurantId) {
-      if (selectedRole === 'chef') {
-        var chefSnap = await db.collection('cc_chefs')
-          .where('email', '==', email).limit(1).get();
-        if (!chefSnap.empty) {
-          var cd = chefSnap.docs[0].data();
-          role         = 'chef';
-          restaurantId = cd.restaurantId || null;
-          name         = cd.name || '';
-        }
-      } else {
-        // Captain — username se dhundo (email ya username@siplora-captain.local format)
-        var capEmail = email.includes('@siplora-captain.local') ? email : email;
-        var capSnap  = await db.collection('captains')
-          .where('username', '==', email).limit(1).get();
-        // Agar username se nahi mila to email se try karo
-        if (capSnap.empty) {
-          capSnap = await db.collection('captains')
-            .where('email', '==', email).limit(1).get();
-        }
-        if (!capSnap.empty) {
-          var capd = capSnap.docs[0].data();
-          role         = 'captain';
-          restaurantId = capd.restaurantId || null;
-          name         = capd.name || '';
-        }
+      console.log('[Login] users/ mein nahi mila — cc_chefs check...');
+      var chefSnap = await db.collection('cc_chefs')
+        .where('email', '==', email)
+        .limit(1).get();
+
+      if (!chefSnap.empty) {
+        var cd       = chefSnap.docs[0].data();
+        role         = 'chef';
+        restaurantId = cd.restaurantId || null;
+        name         = cd.name         || '';
+        console.log('[Login] cc_chefs mein mila — rid:', restaurantId);
       }
     }
 
-    // ── Step 4: Role mismatch check ─────────────────────────
-    if (role && role !== selectedRole) {
-      await auth.signOut();
-      showErr('❌ Aap ' + role + ' hain — upar ' +
-        (role === 'chef' ? 'Chef' : 'Captain') + ' select karo');
-      return;
+    // ── STEP 4: cc_chefs mein bhi nahi — captains se dhundo ──
+    if (!role || !restaurantId) {
+      console.log('[Login] cc_chefs mein nahi — captains check...');
+
+      // Pehle email se try karo
+      var capSnap = await db.collection('captains')
+        .where('email', '==', email).limit(1).get();
+
+      // Email nahi mila — username se try karo
+      if (capSnap.empty) {
+        capSnap = await db.collection('captains')
+          .where('username', '==', email).limit(1).get();
+      }
+
+      // Username@siplora-captain.local format try karo
+      if (capSnap.empty) {
+        var localEmail = email.replace('@siplora-captain.local', '');
+        capSnap = await db.collection('captains')
+          .where('username', '==', localEmail).limit(1).get();
+      }
+
+      if (!capSnap.empty) {
+        var capd     = capSnap.docs[0].data();
+        role         = 'captain';
+        restaurantId = capd.restaurantId || null;
+        name         = capd.name         || '';
+        console.log('[Login] captains mein mila — rid:', restaurantId);
+      }
     }
 
+    // ── STEP 5: Role nahi mila ────────────────────────────
     if (!role) {
       await auth.signOut();
-      showErr('❌ Account nahi mila — billing panel se pehle add karo');
+      showErr('❌ Staff account nahi mila — billing panel se pehle add karo');
       return;
     }
 
+    // ── STEP 6: RestaurantId nahi mili ───────────────────
     if (!restaurantId) {
       await auth.signOut();
-      showErr('❌ Restaurant assign nahi hai — owner se contact karo');
+      showErr('❌ Restaurant assign nahi — owner se contact karo');
       return;
     }
 
-    // ── Step 5: Session save karo ────────────────────────────
-    sessionStorage.setItem('siplora_staff_session', JSON.stringify({
-      uid          : uid,
-      email        : email,
-      role         : role,
-      restaurantId : restaurantId,
-      name         : name,
-      loginAt      : Date.now()
+    // ── STEP 7: Session save ──────────────────────────────
+    sessionStorage.setItem('siplora_staff', JSON.stringify({
+      uid, email, role, restaurantId, name, loginAt: Date.now()
     }));
 
-    // Captain ke liye restaurantId localStorage mein bhi save karo
     if (role === 'captain') {
       localStorage.setItem('captain_restaurant_id', restaurantId);
     }
 
-    // ── Step 6: Success screen dikhao phir redirect ──────────
-    var overlay = document.getElementById('successOverlay');
-    document.getElementById('successIcon').textContent  = role === 'chef' ? '👨‍🍳' : '🧑‍✈️';
-    document.getElementById('successText').textContent  = 'Welcome, ' + (name || (role === 'chef' ? 'Chef' : 'Captain')) + '!';
-    document.getElementById('successSub').textContent   = restaurantId + ' → ' + (role === 'chef' ? 'Chef Panel' : 'Captain Panel');
-    overlay.classList.add('show');
+    // ── STEP 8: Success screen ────────────────────────────
+    document.getElementById('sIcon').textContent = role === 'chef' ? '👨‍🍳' : '🧑‍✈️';
+    document.getElementById('sName').textContent = 'Welcome, ' + (name || (role === 'chef' ? 'Chef' : 'Captain')) + '!';
+    document.getElementById('sRole').textContent = role === 'chef' ? 'Chef Panel' : 'Captain Panel';
+    document.getElementById('sRest').textContent = 'Restaurant: ' + restaurantId;
+    document.getElementById('successOverlay').classList.add('show');
 
-    // 1.5 second baad redirect
+    // ── STEP 9: Redirect ──────────────────────────────────
     setTimeout(function() {
       if (role === 'chef') {
         window.location.href = 'chef.html?rid=' + encodeURIComponent(restaurantId);
@@ -398,11 +339,12 @@ async function doLogin() {
 
   } catch(err) {
     var code = err.code || '';
+    console.error('[Login] Error:', code, err.message);
     if      (code === 'auth/user-not-found')    showErr('❌ Ye email registered nahi hai');
     else if (code === 'auth/wrong-password')     showErr('❌ Password galat hai');
     else if (code === 'auth/invalid-credential') showErr('❌ Email ya password galat hai');
     else if (code === 'auth/invalid-email')      showErr('❌ Email format sahi nahi');
-    else if (code === 'auth/too-many-requests')  showErr('❌ Bahut attempts — thodi der baad try karo');
+    else if (code === 'auth/too-many-requests')  showErr('❌ Bahut attempts — kuch der baad try karo');
     else                                         showErr('❌ ' + (err.message || code));
   }
 }
